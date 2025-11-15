@@ -4,6 +4,9 @@
 
 void popv(int [], int);
 void show(int [], int);
+void zerarm(int **, int);
+void adpos(int **, int [], int [], int);
+void mostm(int **, int);
 
 int main(){
     srand(time(NULL));
@@ -28,24 +31,18 @@ int main(){
         m[i] = malloc(n*sizeof(int));
     }
     
-    for(int i=0; i<n; i++){
-        for(int j=0; j<n; j++){
-            m[i][j] = 0;
-        }
-    }
+    zerarm(m,n);
+    
+    adpos(m,x,y,n);
 
-    for(int i=0; i<n; i++){
-        m[x[i]][y[i]]++;
-    }
+    mostm(m,n);    
+    puts("");
     
-    
-    for(int i=0; i<n; i++){
-        for(int j=0; j<n; j++){
-            printf("%d ", m[i][j]);
-        }
-        puts("");
-    }
-    
+    show(x,n);
+    puts("");
+
+    show(y,n);
+    puts("");
     
     free(x);
     free(y);
@@ -65,5 +62,28 @@ void popv(int x[], int y){
 void show(int x[], int y){
     for(int i=0; i<y; i++){
         printf("%d ", x[i]);
+    }
+}
+
+void zerarm(int **x, int n){
+    for(int i=0; i<n; i++){
+        for(int j=0; j<n; j++){
+            x[i][j] = 0;
+        }
+    }   
+}
+
+void adpos(int **x, int a[], int b[], int n){
+    for(int i=0; i<n; i++){
+        x[a[i]][b[i]]++;
+    }
+}
+
+void mostm(int **x, int n){
+    for(int i=0; i<n; i++){
+        for(int j=0; j<n; j++){
+            printf("%d ", x[i][j]);
+        }
+        puts("");
     }
 }
